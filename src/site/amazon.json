@@ -1,0 +1,106 @@
+{
+  "platform": {
+    "name": "amazon",
+    "domain": "amazon.com",
+    "country": "US",
+    "detected_by": ["amazon.com", "#nav-logo", ".nav-sprite-v1"]
+  },
+  "page_signatures": {
+    "product_detail": {
+      "url_patterns": ["/dp/", "/gp/product/", "/ASIN/"],
+      "required_elements": ["#productTitle", "#ppd", "#dp"]
+    },
+    "search_results": {
+      "url_patterns": ["/s?", "/s/ref="],
+      "required_elements": ["[data-component-type='s-search-result']", ".s-result-list"]
+    }
+  },
+  "data_extractors": {
+    "product": {
+      "price_selectors": {
+        "current_price": [
+          ".a-price[data-a-size=xl] .a-offscreen",
+          ".priceToPay",
+          ".a-price-range"
+        ],
+        "original_price": [
+          ".a-price[data-a-size=base] .a-offscreen",
+          ".a-text-strike"
+        ],
+        "discount_rate": [
+          ".savingsPercentage",
+          ".a-size-large.a-color-price.savingPriceOverride"
+        ],
+        "currency_pattern": "\\$|USD"
+      },
+      "shipping_selectors": {
+        "shipping_fee": [
+          "#amazonGlobal_feature_div",
+          "#deliveryBlockMessage"
+        ],
+        "delivery_time": [
+          "#mir-layout-DELIVERY_BLOCK .a-text-bold",
+          ".ddmDeliveryMessage"
+        ],
+        "shipping_method": [
+          "#fast-track-message",
+          ".a-color-success:contains('Prime')"
+        ],
+        "free_shipping_indicator": [
+          "span:contains('FREE delivery')",
+          ".a-color-base:contains('FREE')"
+        ]
+      },
+      "seller_selectors": {
+        "seller_name": [
+          "#sellerProfileTriggerId",
+          "#merchant-info a"
+        ],
+        "seller_rating": [
+          "#seller-rating-count-id-m"
+        ],
+        "seller_location": [
+          "#tabular-buybox .tabular-buybox-text[tabular-attribute-name='Ships from'] span"
+        ],
+        "fulfilled_by": [
+          "#tabular-buybox .tabular-buybox-text:contains('Fulfilled by')"
+        ]
+      }
+    },
+    "list_item": {
+      "item_container": [
+        "div.s-result-item[data-component-type='s-search-result']"
+      ],
+      "item_link": [
+        "div>a::attr(href)",
+        "h2 a"
+      ],
+      "item_price": [
+        ".a-price[data-a-size=xl] .a-offscreen",
+        ".a-price .a-offscreen"
+      ],
+      "item_title": [
+        "h2 a span::text",
+        "h2.a-size-mini span"
+      ]
+    }
+  },
+  "navigation_patterns": {
+    "pagination": {
+      "next_button": [
+        ".s-pagination-next",
+        ".a-pagination .a-last>a"
+      ],
+      "page_numbers": [".s-pagination-item"],
+      "page_param": "page"
+    },
+    "infinite_scroll": false
+  },
+  "anti_bot_measures": {
+    "aws_waf": true,
+    "captcha_types": ["FunCaptcha", "image-to-text"],
+    "rate_limit": "100/min per IP",
+    "requires_javascript": false,
+    "fingerprinting": "advanced"
+  }
+}

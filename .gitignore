@@ -1,0 +1,57 @@
+# Rust
+/target/
+**/*.rs.bk
+*.pdb
+Cargo.lock
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+*.log
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary files
+*.tmp
+*.temp
+
+# Build outputs
+/build/
+/dist/
+
+# Node modules (if any)
+node_modules/
+
+# Chrome extensions and browser data
+chrome_data/
+browser_profiles/
+
+# Model files (if large)
+*.onnx
+*.bin
+*.safetensors
+
+# Specific large model file
+src/infrastruction/llm/model_int8.onnx
+
+# Cache
+.cache/

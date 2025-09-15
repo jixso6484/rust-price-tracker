@@ -1,0 +1,111 @@
+{
+  "platform": {
+    "name": "coupang",
+    "domain": "coupang.com",
+    "country": "KR",
+    "detected_by": ["coupang.com", "#logo", "쿠팡"]
+  },
+  "page_signatures": {
+    "product_detail": {
+      "url_patterns": ["/vp/products/", "/np/products/"],
+      "required_elements": [".prod-buy", ".price-value"]
+    },
+    "search_results": {
+      "url_patterns": ["/np/search", "/np/categories/"],
+      "required_elements": [".search-product", "#productList"]
+    }
+  },
+  "data_extractors": {
+    "product": {
+      "price_selectors": {
+        "current_price": [
+          ".price-value",
+          ".prod-sale-price"
+        ],
+        "original_price": [
+          ".base-price",
+          "del"
+        ],
+        "discount_rate": [
+          ".discount-percentage",
+          ".prod-discount-rate"
+        ],
+        "currency_pattern": "원|₩|KRW"
+      },
+      "shipping_selectors": {
+        "shipping_fee": [
+          ".prod-shipping-fee-message",
+          ".shipping-fee"
+        ],
+        "delivery_time": [
+          ".arrival-info",
+          ".sdp-delivery-date"
+        ],
+        "shipping_method": [
+          ".rocket-badge img",
+          ".arrival-info img[src*='rocket']"
+        ],
+        "free_shipping_indicator": [
+          "span:contains('무료배송')",
+          ".free-shipping-icon"
+        ]
+      },
+      "seller_selectors": {
+        "seller_name": [
+          ".prod-sale-vendor-name",
+          ".prod-vendor-name a"
+        ],
+        "seller_rating": [
+          ".seller-rating",
+          ".prod-vendor-rating"
+        ],
+        "fulfilled_by": [
+          ".rocket-merchant",
+          "img[alt*='로켓']"
+        ]
+      },
+      "additional_selectors": {
+        "card_discount": [".ccid-txt"],
+        "cashback": [".reward-cash-txt"],
+        "rating": [".rating em"],
+        "review_count": [".rating-total-count span"]
+      }
+    },
+    "list_item": {
+      "item_container": [
+        ".search-product",
+        "#productList li"
+      ],
+      "item_link": [
+        ".search-product-link",
+        "a.baby-product-link"
+      ],
+      "item_price": [
+        ".price-value",
+        ".price strong"
+      ],
+      "item_title": [
+        ".name",
+        ".prod-name"
+      ],
+      "item_ad_badge": [".search-product__ad-badge"]
+    }
+  },
+  "navigation_patterns": {
+    "pagination": {
+      "next_button": [".page-next", "a.next"],
+      "prev_button": [".page-prev", "a.prev"],
+      "page_param": "page"
+    },
+    "infinite_scroll": false,
+    "lazy_loading": true
+  },
+  "anti_bot_measures": {
+    "cloudflare": true,
+    "captcha_types": ["Cloudflare Challenge"],
+    "rate_limit": "aggressive",
+    "requires_javascript": true,
+    "geographic_restriction": "KR focused",
+    "user_agent_check": true
+  }
+}

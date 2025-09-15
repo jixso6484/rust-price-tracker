@@ -1,0 +1,126 @@
+{
+  "platform": {
+    "name": "aliexpress",
+    "domain": "aliexpress.com",
+    "country": "CN",
+    "detected_by": ["aliexpress.com", ".ali-logo", "AliExpress"]
+  },
+  "page_signatures": {
+    "product_detail": {
+      "url_patterns": ["/item/", "/i/"],
+      "required_elements": ["h1[data-pl='product-title']", ".pdp-info-right"]
+    },
+    "search_results": {
+      "url_patterns": ["/wholesale", "/category/", "/w/"],
+      "required_elements": ["#root", ".list--gallery"]
+    }
+  },
+  "data_extractors": {
+    "product": {
+      "javascript_data": {
+        "main_variable": "window.runParams",
+        "location": "script[type='text/javascript']",
+        "parse_method": "JSON extraction from script tag"
+      },
+      "price_selectors": {
+        "current_price": [
+          ".price--current--H7sGzqb.product-price-current span",
+          ".product-price-value"
+        ],
+        "original_price": [
+          ".price--original--qJD4C1F",
+          ".product-price-original"
+        ],
+        "discount_rate": [
+          ".price--discount--3V0gbcD",
+          ".product-price-discount"
+        ],
+        "currency_pattern": "US\\s?\\$|\\$|USD"
+      },
+      "shipping_selectors": {
+        "shipping_fee": [
+          ".product-shipping-price",
+          ".dynamic-shipping-line .bold"
+        ],
+        "delivery_time": [
+          ".dynamic-shipping-titleLayout",
+          ".product-shipping-delivery"
+        ],
+        "shipping_method": [
+          ".dynamic-shipping-line"
+        ],
+        "free_shipping_indicator": [
+          "span:contains('Free shipping')",
+          ".product-shipping-free"
+        ]
+      },
+      "seller_selectors": {
+        "seller_name": [
+          "a[data-pl='store-name']",
+          ".store-info-name a"
+        ],
+        "seller_rating": [
+          ".store-info-rating",
+          ".shop-rating"
+        ],
+        "seller_location": [
+          ".store-info-address"
+        ]
+      },
+      "additional_selectors": {
+        "product_rating": ["span[itemprop='ratingValue']"],
+        "review_count": ["a[class*='reviewer--reviews']"],
+        "specifications": [".specification--prop"],
+        "variations": ["window.runParams.data.skuModule"]
+      }
+    },
+    "list_item": {
+      "item_container": [
+        ".list--gallery--34TropR",
+        "a.search-card-item"
+      ],
+      "item_link": [
+        "a.search-card-item::attr(href)"
+      ],
+      "item_price": [
+        ".price-current",
+        ".es--wrap--erdmPRe"
+      ],
+      "item_title": [
+        ".title--wccZjq",
+        ".item-title"
+      ],
+      "javascript_list": {
+        "data_location": "window.runParams",
+        "items_key": "items"
+      }
+    }
+  },
+  "navigation_patterns": {
+    "pagination": {
+      "next_button": [
+        ".comet-pagination-next",
+        "button[aria-label='Next page']"
+      ],
+      "page_param": "page",
+      "max_pages": 60
+    },
+    "infinite_scroll": true,
+    "scroll_load_trigger": "80%"
+  },
+  "anti_bot_measures": {
+    "captcha_types": ["reCAPTCHA v2", "reCAPTCHA v3"],
+    "rate_limit": "aggressive IP blocking",
+    "requires_javascript": true,
+    "fingerprinting": "advanced browser detection",
+    "geographic_redirect": true,
+    "react_based": true,
+    "requires_cookies": true
+  },
+  "technical_notes": {
+    "rendering": "React.js with SSR + CSR hybrid",
+    "data_loading": "JavaScript hydration required",
+    "primary_data_source": "window.runParams in script tags",
+    "selector_stability": "moderate - JavaScript data more reliable"
+  }
+}
