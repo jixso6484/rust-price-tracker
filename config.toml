@@ -1,0 +1,57 @@
+[database]
+url = "postgresql://user:password@localhost/price_tracker"
+max_connections = 10
+timeout = 30
+
+[browser]
+headless = true
+timeout = 30
+user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+window_size = { width = 1920, height = 1080 }
+disable_images = false
+disable_javascript = false
+
+[crawler]
+max_retries = 3
+delay_between_requests = 1000  # milliseconds
+max_concurrent_tabs = 5
+request_timeout = 30
+rate_limit_per_minute = 60
+
+[llm]
+use_api = false
+api_provider = "openai"  # openai, claude, local
+api_key = ""  # Set via environment variable
+max_tokens = 1000
+temperature = 0.7
+
+[logging]
+level = "info"  # error, warn, info, debug, trace
+file = "crawler.log"
+console = true
+json_format = false
+
+[sites.coupang]
+domain = "https://www.coupang.com"
+enabled = true
+rate_limit = 30  # requests per minute
+selectors.product_name = [".prod-buy-header__title", ".name", ".search-product-title"]
+selectors.price = [".total-price strong", ".price-value", ".sale-price"]
+selectors.original_price = [".base-price", ".origin-price"]
+selectors.discount = [".discount-percentage", ".sale-badge"]
+selectors.image = [".prod-image__item img", ".product-image img"]
+selectors.product_links = ["a.baby-product-link", "a.search-product-link"]
+
+[sites.gmarket]
+domain = "https://www.gmarket.co.kr"
+enabled = false
+rate_limit = 30
+selectors.product_name = [".itemname"]
+selectors.price = [".price_innerwrap"]
+
+[monitoring]
+enabled = true
+metrics_interval = 60  # seconds
+health_check_interval = 300  # seconds
+memory_threshold_mb = 1000
+cpu_threshold_percent = 80

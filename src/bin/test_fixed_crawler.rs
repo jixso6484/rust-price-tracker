@@ -1,10 +1,10 @@
 mod components;
-mod infrastruction;
+mod infrastructure;
 mod application;
 mod domain;
 
 use application::services::crawling_fixed::FixedCrawlingOrchestrator;
-use infrastruction::llm::models::{MarketplaceStructure, PlatformInfo, PageSignatures, PageSignature, DataExtractors, 
+use infrastructure::llm::models::{MarketplaceStructure, PlatformInfo, PageSignatures, PageSignature, DataExtractors, 
     ProductExtractor, PriceSelectors, ShippingSelectors, SellerSelectors, ListItemExtractor, 
     NavigationPatterns, PaginationPattern, AntiBotIndicators};
 use std::collections::HashMap;

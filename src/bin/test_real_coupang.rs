@@ -1,6 +1,6 @@
-use sexy_crawling::infrastruction::browser::chromiumAdapter::ChromiumAdapter;
-use sexy_crawling::infrastruction::browser::models::BrowserAction;
-use sexy_crawling::infrastruction::html::coupang::CoupangParser;
+use sexy_crawling::infrastructure::browser::chromiumAdapter::ChromiumAdapter;
+use sexy_crawling::infrastructure::browser::models::BrowserAction;
+use sexy_crawling::infrastructure::html::coupang::CoupangParser;
 use anyhow::Result;
 
 #[tokio::main]

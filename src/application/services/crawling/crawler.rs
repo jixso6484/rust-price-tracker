@@ -3,11 +3,11 @@ use tokio::time::Duration;
 use headless_chrome::Tab;
 
 // Infrastructure 의존성
-use crate::infrastruction::llm::llmRepository::LocalLLM;
-use crate::infrastruction::browser::chromiumAdapter::ChromiumAdapter;
-use crate::infrastruction::browser::models::{BrowserAction, BrowserState};
-use crate::infrastruction::database::models::Product;
-use crate::infrastruction::llm::models::MarketplaceStructure;
+use crate::infrastructure::llm::llmRepository::LocalLLM;
+use crate::infrastructure::browser::chromiumAdapter::ChromiumAdapter;
+use crate::infrastructure::browser::models::{BrowserAction, BrowserState};
+use crate::infrastructure::database::models::Product;
+use crate::infrastructure::llm::models::MarketplaceStructure;
 
 // 에러 처리
 use crate::components::error::error_cl::Result;
@@ -143,7 +143,7 @@ impl NewCrawler {
                 selector: "a, button".to_string() 
             },
             "scroll" => BrowserAction::Scroll { 
-                direction: crate::infrastruction::browser::models::ScrollDirection::Down, 
+                direction: crate::infrastructure::browser::models::ScrollDirection::Down, 
                 amount: 500 
             },
             "extract" => BrowserAction::ExtractText { 

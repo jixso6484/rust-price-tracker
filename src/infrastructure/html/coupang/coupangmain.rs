@@ -1,7 +1,7 @@
 use serde::{Serialize, Deserialize};
 use async_trait::async_trait;
-use crate::infrastruction::html::basic::HtmlParser;
-use crate::infrastruction::database::models::Product;
+use crate::infrastructure::html::basic::HtmlParser;
+use crate::infrastructure::database::models::Product;
 use anyhow::Result;
 use scraper::{Html, Selector};
 

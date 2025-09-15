@@ -1,8 +1,8 @@
 use anyhow::Result;
-use sexy_crawling::infrastruction::browser::chromiumAdapter::ChromiumAdapter;
-use sexy_crawling::infrastruction::browser::models::BrowserAction;
-use sexy_crawling::infrastruction::html::coupang::CoupangParser;
-use sexy_crawling::infrastruction::html::basic::html_parese;
+use sexy_crawling::infrastructure::browser::chromiumAdapter::ChromiumAdapter;
+use sexy_crawling::infrastructure::browser::models::BrowserAction;
+use sexy_crawling::infrastructure::html::coupang::CoupangParser;
+use sexy_crawling::infrastructure::html::basic::html_parese;
 
 #[tokio::main]
 async fn main() -> Result<()> {
@@ -74,7 +74,7 @@ async fn main() -> Result<()> {
     for _ in 0..3 {
         // 페이지 아래로 스크롤
         let scroll_action = BrowserAction::Scroll {
-            direction: sexy_crawling::infrastruction::browser::models::ScrollDirection::Down,
+            direction: sexy_crawling::infrastructure::browser::models::ScrollDirection::Down,
             amount: 1000.0,
         };
         browser.execute_action(&tab, scroll_action).await?;

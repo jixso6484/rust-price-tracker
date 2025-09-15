@@ -38,7 +38,7 @@ static LLM_INSTANCE: OnceCell<Arc<LocalLLM>> = OnceCell::const_new();
 impl LocalLLM{
     pub async fn new()->Result<Self>{
         // ONNX 모델 파일 체크
-        let model_path = "src/infrastruction/llm/model_int8.onnx";
+        let model_path = "src/infrastructure/llm/model_int8.onnx";
         
         let model_exists = std::path::Path::new(model_path).exists();
         let mut onnx_session = None;

@@ -1,7 +1,7 @@
 use anyhow::Result;
 use async_trait::async_trait;
-use crate::infrastruction::database::models::Product;
-use crate::infrastruction::html::coupang::coupangmain::CoupangParse;
+use crate::infrastructure::database::models::Product;
+use crate::infrastructure::html::coupang::coupangmain::CoupangParse;
 
 pub struct ParserFactory;
 

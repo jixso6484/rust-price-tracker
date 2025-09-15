@@ -1,4 +1,4 @@
-use sexy_crawling::infrastruction::llm::llmRepository::LocalLLM;
+use sexy_crawling::infrastructure::llm::llmRepository::LocalLLM;
 use tokio;
 
 #[tokio::main]
@@ -11,7 +11,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         Ok(llm) => llm,
         Err(e) => {
             println!("❌ LLM 초기화 실패: {}", e);
-            println!("💡 ONNX 모델 파일이 src/infrastruction/llm/model_int8.onnx 경로에 있는지 확인하세요.");
+            println!("💡 ONNX 모델 파일이 src/infrastructure/llm/model_int8.onnx 경로에 있는지 확인하세요.");
             return Err(e.into());
         }
     };

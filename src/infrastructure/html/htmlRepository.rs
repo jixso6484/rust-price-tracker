@@ -1,6 +1,6 @@
 use std::collections::{HashMap, HashSet};
 use chrono::{DateTime, Utc, Duration};
-use crate::infrastruction::html::basic::{HtmlParser, ParserFactory};
+use crate::infrastructure::html::basic::{HtmlParser, ParserFactory};
 use anyhow::Result;
 
 pub struct HtmlRepository {
